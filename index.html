@@ -42,7 +42,7 @@
         }
         header nav a:hover { color: #000; border-color: #000; }
 
-        /* 写真をたくさん並べるためのグリッド設定 */
+        /* 作品一覧グリッド */
         .works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -52,11 +52,12 @@
             background: #fff; 
             border: 1px solid #eee; 
             overflow: hidden; 
+            cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .work-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.06);
         }
         .work-card img { 
             width: 100%; 
@@ -78,10 +79,77 @@
             font-weight: 500; 
             margin-bottom: 8px; 
         }
-        .work-card p { 
+        .work-card p.short-desc { 
             font-size: 0.85rem; 
             color: #555; 
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 詳細モーダル（ポップアップ） */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+        .modal-content {
+            background: #fff;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            position: relative;
+            border-radius: 2px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+        }
+        .close-btn:hover { color: #000; }
+        .modal-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        /* モーダル内の写真ギャラリー */
+        .modal-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .modal-gallery img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            background: #fafafa;
+        }
+        
+        .modal-detail {
+            font-size: 0.92rem;
+            color: #333;
+            line-height: 1.9;
             white-space: pre-line;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
         }
 
         /* フッター */
@@ -108,40 +176,37 @@
             </nav>
         </header>
 
-        <!-- 写真を増やしていくときは、以下の <article class="work-card"> の塊をコピーして下に増やしていきます -->
         <main class="works-grid">
 
             <!-- 作品 1 -->
-            <article class="work-card">
-                <img src="photo1.jpg" alt="作品名1">
+            <article class="work-card" onclick="openModal('modal1')">
+                <img src="tan_korois.jpg" alt="タンコロイス">
                 <div class="content">
                     <div class="category">Furniture / Timber</div>
                     <h2>タンコロイス</h2>
-                    <p>山形県小国町にて、チェンソーを用いてブナの原木から直に削り出した立体家具作品。</p>
+                    <p class="short-desc">山形県小国町にて、チェンソーを用いてブナの原木から直に削り出した立体家具作品。</p>
                 </div>
             </article>
 
             <!-- 作品 2 -->
-            <article class="work-card">
-                <img src="photo2.jpg" alt="作品名2">
+            <article class="work-card" onclick="openModal('modal2')">
+                <img src="logo_series.jpg" alt="&quot;LoGo&quot; Series">
                 <div class="content">
                     <div class="category">Printmaking / Typography</div>
                     <h2>"LoGo" Series</h2>
-                    <p>文字を物理的な素材として捉え、線の厚みや反転彫刻を試みた版画・タイポグラフィ作品。</p>
+                    <p class="short-desc">文字を物理的な素材として捉え、線の厚みや反転彫刻を試みた版画・タイポグラフィ作品。</p>
                 </div>
             </article>
 
             <!-- 作品 3 -->
-            <article class="work-card">
-                <img src="05452c14-ae91-4651-a34e-fef4368e0a20_rw_1200.JPG" alt="作品名3">
+            <article class="work-card" onclick="openModal('modal3')">
+                <img src="teahouse_structure.jpg" alt="茶室・素材研究">
                 <div class="content">
                     <div class="category">Architecture / Material</div>
                     <h2>茶室・素材研究</h2>
-                    <p>クチャや琉球石灰岩、竹など、現地の素材を採集・実験しながら構築する小建築の試み。</p>
+                    <p class="short-desc">クチャや琉球石灰岩、竹など、現地の素材を採集・実験しながら構築する小建築の試み。</p>
                 </div>
             </article>
-
-            <!-- 💡 写真を増やすときは、この下に同じ形式で追加していきます -->
 
         </main>
 
@@ -149,6 +214,94 @@
             <p>&copy; taiga hagioda. All Rights Reserved.</p>
         </footer>
     </div>
+
+
+    <!-- ==================== 詳細モーダル（ポップアップ）群 ==================== -->
+
+    <!-- モーダル 1: タンコロイス -->
+    <div id="modal1" class="modal" onclick="closeModalOnOuter(event, 'modal1')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+            <div class="modal-category">Furniture / Timber</div>
+            <h2 class="modal-title">タンコロイス</h2>
+            
+            <!-- 写真ギャラリー（カンマ区切りで何枚でも追加できます） -->
+            <div class="modal-gallery">
+                <img src="tan_korois.jpg" alt="メイン写真">
+                <!-- 追加の写真がある場合は、下に <img src="..."> を並べて追加します -->
+                <img src="tan_korois_detail1.jpg" alt="詳細写真1">
+                <img src="tan_korois_detail2.jpg" alt="詳細写真2">
+            </div>
+
+            <!-- 詳しい解説文章 -->
+            <div class="modal-detail">
+山形県小国町にて、チェンソーを用いてブナの原木から直に削り出した立体家具作品。
+
+素材が元々持っている傷跡や自然の立ち姿を留めながら、かたちを身体や空間のスケールに合わせて誘導・削り出しを行っています。
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル 2: "LoGo" Series -->
+    <div id="modal2" class="modal" onclick="closeModalOnOuter(event, 'modal2')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+            <div class="modal-category">Printmaking / Typography</div>
+            <h2 class="modal-title">"LoGo" Series</h2>
+            
+            <div class="modal-gallery">
+                <img src="logo_series.jpg" alt="メイン写真">
+                <img src="logo_detail1.jpg" alt="詳細写真1">
+            </div>
+
+            <div class="modal-detail">
+文字を物理的な素材・物質として捉え直す試み。
+
+線の厚み、反転彫刻、インクの定着プロセスを通じて、言葉の意味性と視覚的・触覚的な造形の境界を探求した版画・タイポグラフィ作品群。
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル 3: 茶室・素材研究 -->
+    <div id="modal3" class="modal" onclick="closeModalOnOuter(event, 'modal3')">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+            <div class="modal-category">Architecture / Material</div>
+            <h2 class="modal-title">茶室・素材研究</h2>
+            
+            <div class="modal-gallery">
+                <img src="teahouse_structure.jpg" alt="メイン写真">
+                <img src="teahouse_detail1.jpg" alt="詳細写真1">
+            </div>
+
+            <div class="modal-detail">
+沖縄のクチャ（泥岩）、琉球石灰岩、竹、芭蕉繊維など、現地の自生・採集素材を用いた小建築の構造実験。
+
+風土に根ざした建築のエレメントや架構の組み合わせを現代のスケールで再構築する試み。
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript: モーダルの開閉処理 -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // 背後のスクロールを固定
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto'; // スクロール解除
+        }
+
+        // 背景（黒い部分）をクリックした時も閉じる処理
+        function closeModalOnOuter(event, id) {
+            if (event.target === document.getElementById(id)) {
+                closeModal(id);
+            }
+        }
+    </script>
 
 </body>
 </html>
