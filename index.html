@@ -12,170 +12,74 @@
             background-color: #fafafa;
             line-height: 1.8;
             padding: 40px 20px;
-        }
-        .container { max-width: 1100px; margin: 0 auto; }
-        header { margin-bottom: 60px; border-bottom: 1px solid #eee; padding-bottom: 30px; }
-        header h1 { 
-            font-size: 2rem; 
-            font-weight: 400; 
-            letter-spacing: 0.08em; 
-            font-family: "Othoro Pro", "Yu Mincho", "游明朝", serif;
-        }
-        header p.bio { margin-top: 10px; font-size: 0.95rem; color: #666; }
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px 30px;
-        }
-        .work-card { background: #fff; border: 1px solid #f0f0f0; overflow: hidden; }
-        .work-card img { width: 100%; height: 240px; object-fit: cover; display: block; background-color: #eee; }
-        .work-card .content { padding: 20px; }
-        .work-card .category { 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            color: #888; 
-            margin-bottom: 5px; 
-            font-family: "Othoro Pro", serif;
-            letter-spacing: 0.1em;
-        }
-        .work-card h2 { font-size: 1.1rem; font-weight: 500; margin-bottom: 10px; }
-        .work-card p { font-size: 0.88rem; color: #555; }
-        footer { 
-            margin-top: 80px; 
-            padding-top: 30px; 
-            border-top: 1px solid #eee; 
-            font-size: 0.8rem; 
-            color: #888; 
-            text-align: center; 
-            font-family: "Othoro Pro", "Yu Mincho", "游明朝", serif;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>taiga hagioda</h1>
-            <p class="bio">建築、家具、造形、版画、タイポグラフィなど、素材や技法を横断した制作・研究活動を行っています。</p>
-        </header>
-
-        <main class="works-grid">
-            <article class="work-card">
-                <img src="tan korois.jpg" alt="タンコロイス">
-                <div class="content">
-                    <div class="category">Furniture / Timber</div>
-                    <h2>タンコロイス</h2>
-                    <p>山形県小国町にて、チェンソーを用いてブナの原木から直に削り出した立体家具作品。</p>
-                </div>
-            </article>
-
-            <article class="work-card">
-                <img src="logo.jpg" alt="LoGo Series">
-                <div class="content">
-                    <div class="category">Printmaking / Typography</div>
-                    <h2>"LoGo" Series</h2>
-                    <p>文字を物理的な素材として捉え、線の厚みや反転彫刻を試みた版画・タイポグラフィのシリーズ。</p>
-                </div>
-            </article>
-        </main>
-
-        <footer>
-            <p>&copy; taiga hagioda. All Rights Reserved.</p>
-        </footer>
-    </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>taiga hagioda | Works & Portfolio</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: "Othoro Pro", "Yu Mincho", "游明朝", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
-            color: #222;
-            background-color: #fafafa;
-            line-height: 1.8;
-            padding: 40px 20px;
             -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 1100px; margin: 0 auto; }
+        .container { max-width: 1200px; margin: 0 auto; }
         
         /* ヘッダー */
         header { 
-            margin-bottom: 60px; 
+            margin-bottom: 50px; 
             border-bottom: 1px solid #eee; 
-            padding-bottom: 30px; 
+            padding-bottom: 25px; 
         }
         header h1 { 
             font-size: 2rem; 
             font-weight: 400; 
             letter-spacing: 0.08em; 
-            font-family: "Othoro Pro", "Yu Mincho", "游明朝", serif;
         }
         header p.bio { 
-            margin-top: 12px; 
+            margin-top: 10px; 
             font-size: 0.95rem; 
             color: #555; 
             max-width: 650px;
         }
-        header nav {
-            margin-top: 15px;
-        }
+        header nav { margin-top: 12px; }
         header nav a {
-            font-family: "Othoro Pro", serif;
             font-size: 0.85rem;
             color: #666;
             text-decoration: none;
             border-bottom: 1px solid #aaa;
         }
-        header nav a:hover {
-            color: #000;
-            border-color: #000;
-        }
+        header nav a:hover { color: #000; border-color: #000; }
 
-        /* 作品ギャラリー */
+        /* 写真をたくさん並べるためのグリッド設定 */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px 20px;
         }
         .work-card { 
             background: #fff; 
-            border: 1px solid #f0f0f0; 
+            border: 1px solid #eee; 
             overflow: hidden; 
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .work-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
         }
         .work-card img { 
             width: 100%; 
-            height: 260px; 
+            height: 240px; 
             object-fit: cover; 
             display: block; 
             background-color: #f5f5f5; 
         }
-        .work-card .content { padding: 24px; }
+        .work-card .content { padding: 18px; }
         .work-card .category { 
-            font-size: 0.75rem; 
+            font-size: 0.72rem; 
             text-transform: uppercase; 
             color: #888; 
-            margin-bottom: 8px; 
-            font-family: "Othoro Pro", serif;
+            margin-bottom: 6px; 
             letter-spacing: 0.1em;
         }
         .work-card h2 { 
-            font-size: 1.15rem; 
+            font-size: 1.05rem; 
             font-weight: 500; 
-            margin-bottom: 10px; 
-            letter-spacing: 0.04em;
+            margin-bottom: 8px; 
         }
         .work-card p { 
-            font-size: 0.88rem; 
+            font-size: 0.85rem; 
             color: #555; 
             white-space: pre-line;
         }
@@ -183,12 +87,11 @@
         /* フッター */
         footer { 
             margin-top: 80px; 
-            padding-top: 30px; 
+            padding-top: 25px; 
             border-top: 1px solid #eee; 
             font-size: 0.8rem; 
             color: #888; 
             text-align: center; 
-            font-family: "Othoro Pro", "Yu Mincho", "游明朝", serif;
         }
     </style>
 </head>
@@ -205,57 +108,40 @@
             </nav>
         </header>
 
+        <!-- 写真を増やしていくときは、以下の <article class="work-card"> の塊をコピーして下に増やしていきます -->
         <main class="works-grid">
 
-            <!-- 1. タンコロイス -->
+            <!-- 作品 1 -->
             <article class="work-card">
-                <img src="tan_korois.jpg" alt="タンコロイス">
+                <img src="photo1.jpg" alt="作品名1">
                 <div class="content">
                     <div class="category">Furniture / Timber</div>
                     <h2>タンコロイス</h2>
-                    <p>山形県小国町にて、チェンソーを用いてブナの原木から直に削り出した立体家具作品。素材が元々持っている痕跡や立ち姿を留めながらかたちを導き出しています。</p>
+                    <p>山形県小国町にて、チェンソーを用いてブナの原木から直に削り出した立体家具作品。</p>
                 </div>
             </article>
 
-            <!-- 2. "LoGo" Series -->
+            <!-- 作品 2 -->
             <article class="work-card">
-                <img src="logo_series.jpg" alt="&quot;LoGo&quot; Series">
+                <img src="photo2.jpg" alt="作品名2">
                 <div class="content">
                     <div class="category">Printmaking / Typography</div>
                     <h2>"LoGo" Series</h2>
-                    <p>文字を物理的な素材として捉え直す試み。線の厚み、反転彫刻、インクの定着プロセスを通じて、言葉と造形の境界を探求した版画・タイポグラフィ作品群。</p>
+                    <p>文字を物理的な素材として捉え、線の厚みや反転彫刻を試みた版画・タイポグラフィ作品。</p>
                 </div>
             </article>
 
-            <!-- 3. 沖縄の素材と茶室構造 -->
+            <!-- 作品 3 -->
             <article class="work-card">
-                <img src="teahouse_structure.jpg" alt="茶室・素材研究">
+                <img src="photo3.jpg" alt="作品名3">
                 <div class="content">
-                    <div class="category">Architecture / Material Experiment</div>
+                    <div class="category">Architecture / Material</div>
                     <h2>茶室・素材研究</h2>
-                    <p>クチャ（泥岩）、琉球石灰岩、竹、芭蕉など、現地の自生・採集素材を用いた小建築の構造実験。風土に根ざした建築のエレメントや架構の試行。</p>
+                    <p>クチャや琉球石灰岩、竹など、現地の素材を採集・実験しながら構築する小建築の試み。</p>
                 </div>
             </article>
 
-            <!-- 4. 建築付属 / 付属構造物 -->
-            <article class="work-card">
-                <img src="kenchiku_fuzoku.jpg" alt="建築付属">
-                <div class="content">
-                    <div class="category">Architecture / Element</div>
-                    <h2>建築付属</h2>
-                    <p>建築本体に付随する小さなユニット、舞台、小屋、サイン等の設計・制作。建築の周辺領域や拡張性を探るプラットフォームの展開。</p>
-                </div>
-            </article>
-
-            <!-- 5. ドローイング / 立体造形 -->
-            <article class="work-card">
-                <img src="05452c14-ae91-4651-a34e-fef4368e0a20_rw_1200.JPG" alt="Drawings & Sculpture">
-                <div class="content">
-                    <div class="category">Drawing / Sculpture</div>
-                    <h2>Drawings & Sculpture</h2>
-                    <p>思考や空間構造のプロトタイプとしてのドローイングと立体造形。線描の筆圧や立体における輪郭線を物質として捉える試み。</p>
-                </div>
-            </article>
+            <!-- 💡 写真を増やすときは、この下に同じ形式で追加していきます -->
 
         </main>
 
